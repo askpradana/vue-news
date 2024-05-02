@@ -1,11 +1,15 @@
 <template>
   <div class="about">
-    <div v-if="data">
-      <!-- <li v-for="item in financeData.data.stock" :key="item.symbol">
-        {{ item.name }}
-      </li> -->
-      <p>Data: </p>
-      <p>{{ data }}</p>
+
+    <div v-if="isLoading">
+      Loading...
+    </div>
+
+    <div v-else-if="data && !isLoading">
+      <li v-for="d in data.data.stock" :key="d.symbol">
+        <p>{{ d.name }}</p>
+        <p>{{ d.price }}</p>
+      </li>
     </div>
 
     <div v-else>
@@ -14,13 +18,16 @@
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<style scoped>
+li {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+li,
+p {
+  padding: 0 2px;
 }
 </style>
 
@@ -30,13 +37,15 @@ import { useFinanceStore } from '../stores/fetchFinance'
 const finance = useFinanceStore()
 
 const data = computed(() => {
-  return finance.financeData
+  return finance.getFinanceData
+})
+
+const isLoading = computed(() => {
+  return finance.getLoading
 })
 
 onMounted(() => {
   finance.getFinance()
 })
-
-
 
 </script>

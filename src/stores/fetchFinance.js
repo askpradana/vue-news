@@ -2,10 +2,12 @@ import { defineStore } from 'pinia'
 
 export const useFinanceStore = defineStore('finance', {
   state: () => ({
-    financeData: {}
+    financeData: {},
+    loading: false
   }),
   getters: {
-    getFinanceData: (state) => state.financeData
+    getFinanceData: (state) => state.financeData,
+    getLoading: (state) => state.loading
   },
   actions: {
     async getFinance() {
@@ -19,10 +21,13 @@ export const useFinanceStore = defineStore('finance', {
       }
 
       try {
+        this.loading = true
         const response = await fetch(urlFinance, optionsFinance)
         const data = await response.json()
         this.financeData = data
+        this.loading = false
       } catch (error) {
+        this.loading = false
         console.error(error)
       }
     }
