@@ -1,8 +1,16 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <!-- <p> Counter: {{ counter.count }}</p>
-    <button @click="counter.increment()">Increment</button> -->
+    <div v-if="data">
+      <!-- <li v-for="item in financeData.data.stock" :key="item.symbol">
+        {{ item.name }}
+      </li> -->
+      <p>Data: </p>
+      <p>{{ data }}</p>
+    </div>
+
+    <div v-else>
+      <p>No Data</p>
+    </div>
   </div>
 </template>
 
@@ -16,34 +24,19 @@
 }
 </style>
 
-<script>
-// import { useCounterStore } from '@/stores/counter';
-// const counter = useCounterStore();
+<script setup>
+import { computed, onMounted } from 'vue';
+import { useFinanceStore } from '../stores/fetchFinance'
+const finance = useFinanceStore()
 
-// counter.increment()
+const data = computed(() => {
+  return finance.financeData
+})
 
-// fetch(import.meta.env.VITE_URL_NEWSAPI).then(res => res.json()).then(data => console.log(data))
+onMounted(() => {
+  finance.getFinance()
+})
 
-const urlFinance = 'https://real-time-finance-data.p.rapidapi.com/search?query=Apple&language=en';
-const optionsFinance = {
-  method: 'GET',
-  headers: {
-    'X-RapidAPI-Key': '2b45914a0dmsh97c59b900a15693p178667jsnc897f1a44da5',
-    'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
-  }
-};
 
-export default {
-  methods: {
-    getFinance() {
-      fetch(urlFinance, optionsFinance)
-        .then(response => response.json())
-        .then(data => console.log(data))
-    }
-  },
-  created() {
-    this.getFinance()
-  }
-}
 
 </script>

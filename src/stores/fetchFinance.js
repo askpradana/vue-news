@@ -2,8 +2,11 @@ import { defineStore } from 'pinia'
 
 export const useFinanceStore = defineStore('finance', {
   state: () => ({
-    financeData: []
+    financeData: {}
   }),
+  getters: {
+    getFinanceData: (state) => state.financeData
+  },
   actions: {
     async getFinance() {
       const urlFinance = import.meta.env.VITE_URL_FINANCEAPI
