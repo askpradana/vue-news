@@ -37,6 +37,7 @@ import { useFinanceStore } from '../stores/fetchFinance'
 const finance = useFinanceStore()
 
 const data = computed(() => {
+  console.log(finance.getFinanceData);
   return finance.getFinanceData
 })
 
