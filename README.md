@@ -1,41 +1,21 @@
 # vue-news
 
-This template should help get you started developing with Vue 3 in Vite.
+![preview of the apps](public/images/preview.jpeg)
 
-## Recommended IDE Setup
+I built this application just to learn vue,
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+it is built using:
 
-## Customize configuration
+1. vue.js
+2. pinia (state manager/store)
+3. fetch data (GET) => fetch some api on rapidapi and newsapi
+4. file .env for sensitive data
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+#### How-to run this application
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+1. git clone this repo
+2. copy .env.example to .env
+   > cp .env.example .env
+3. generate your own api key
+4. start the project
+   > npm run dev
