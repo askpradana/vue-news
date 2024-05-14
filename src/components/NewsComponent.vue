@@ -40,36 +40,42 @@ const isLoading = computed(() => {
 
 <style scoped>
 .newspresent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 8rem;
 }
 
-
 .news {
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    width: min-content;
-    justify-content: center;
-    align-items: center;
     position: relative;
 }
 
-li:nth-child(3) {
-    background-color: red;
+.news img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
 }
-
-
 
 .overlay-text-h4 {
     position: absolute;
     bottom: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
     padding: 10px;
-    font-size: 20px;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+
+.overlay-text-h4 h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+li {
+    list-style: none;
 }
 
 img {
